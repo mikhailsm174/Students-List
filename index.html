@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="headline">
+            <h1>Students list</h1>
+        </div>
+        <div class="app_body"> 
+            <form action="" class="students_form">
+                <input class="user_input" id="name" type="text" placeholder="name" required>
+                <input class="user_input" id="roll" type="text" placeholder="Roll" required>
+                <input class="user_input" id="class" type="text" placeholder="Class" required>
+                <input class="user_input" id="age" type="number" placeholder="Age" required>
+                <button class="user_btn" id="submit_btn">click me</button>
+            </form>
+
+            <table id="students_table" class="list_table" border>
+                <tr>
+                    <th class="tble_row">Name</th>
+                    <th class="tble_row">Roll</th>
+                    <th class="tble_row">Class</th>
+                    <th class="tble_row">Age</th>
+                </tr>
+                <tbody id="tbody">
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <script src="./script.js"></script>
+    <!-- <script src="./main.js"></script> -->
+</body>
+</html>

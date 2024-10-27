@@ -1,0 +1,60 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.container{
+    width: 100%;
+    height: 100vh;
+}
+
+.headline{
+    text-align: center;
+}
+
+
+.students_form{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    text-align: center;
+    margin: 0 auto;
+    row-gap: 5px;
+    margin-bottom: 30px;
+}
+
+.list_table{
+    width: 50%;
+    margin: 0 auto;
+}
+
+.tble_row{
+    padding: 10px;
+    background-color: antiquewhite;
+    font-size: 20px;
+}
+
+.user_input{
+    padding: 10px;
+    outline: 0;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+}
+
+.user_btn{
+    padding: 10px;
+    border: 0;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.user_btn:hover{
+    background-color: antiquewhite;
+}
+
+.table_data{
+    padding: 10px;
+    text-align: center;
+}
