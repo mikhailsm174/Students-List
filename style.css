@@ -55,7 +55,7 @@
 }
 
 .table_data{
-    padding: 10px;
+    /* padding: 10px; */
     text-align: center;
 }
 
@@ -74,4 +74,44 @@
     background-color: rgb(156, 22, 22);
     color: wheat;
     cursor: pointer;
+}
+
+@media (max-width:768px) {
+    .list_table{
+        width: 80%;
+    }
+}
+
+@media (max-width:425px) {
+    .list_table{
+        width: 95%;
+    }
+
+    /* .editButton, .deleteButton{
+        padding: 5px 0;
+        height: auto;
+    } */
+
+    .table_data{
+        padding: 0;
+    }
+
+    .tble_row{
+        font-size: 16px;
+        padding: 0;
+    }
+
+    .students_form{
+        width: 80%;
+    }
+}
+
+@media (max-width:375px) {
+    .editButton, .deleteButton{
+        font-size: 10px;
+    }
+
+    /* .tble_row{
+        font-size: 16px;
+    } */
 }
