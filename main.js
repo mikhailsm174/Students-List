@@ -1,120 +1,3 @@
-// const nameInput = document.querySelector("#name");
-// const rollInput = document.querySelector("#roll");
-// const classInput = document.querySelector("#class");
-// const ageInput = document.querySelector("#age");
-// const button = document.querySelector("#submit_btn");
-
-// const arry = [nameInput, rollInput, classInput, ageInput];
-
-// button.addEventListener('click', (e)=>{
-//     e.preventDefault();
-//     allField = true;
-
-//     for(let i = 0; i < arry.length; i++){
-//         if(arry[i].value == ""){
-//             allField = false;
-//             break;
-//         }
-//     }
-//     if(!allField){
-//         alert('Some input missing')
-//     }
-//     else{
-//         const studentsTable = document.querySelector('#tbody');
-//         let tr = document.createElement('tr');
-//         arry.forEach(input => {
-//             let td = document.createElement('td');
-//             td.innerHTML = input.value;
-//             td.classList.add('table_data');
-//             tr.appendChild(td);
-//             input.value = '';
-//         });
-//         studentsTable.appendChild(tr);
-//     }
-// })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const nameInput = document.querySelector("#name");
-// const rollInput = document.querySelector("#roll");
-// const classInput = document.querySelector("#class");
-// const ageInput = document.querySelector("#age");
-// const button = document.querySelector("#submit_btn");
-
-// const arry = [nameInput, rollInput, classInput, ageInput];
-// const studentsTable = document.querySelector('#tbody');
-
-// function addRowToTable(student) {
-//     let tr = document.createElement('tr');
-//     student.forEach(value => {
-//         let td = document.createElement('td');
-//         td.innerHTML = value;
-//         td.classList.add('table_data');
-//         tr.appendChild(td);
-//     });
-//     studentsTable.appendChild(tr);
-// }
-
-// document.addEventListener('DOMContentLoaded', () => {
-//     const studentsData = JSON.parse(localStorage.getItem("students")) || [];
-//     studentsData.forEach(student => addRowToTable(student));
-// });
-
-// button.addEventListener('click', (e) => {
-//     e.preventDefault();
-//     let allFieldsFilled = true;
-
-//     for (let i = 0; i < arry.length; i++) {
-//         if (arry[i].value === "") {
-//             allFieldsFilled = false;
-//             break;
-//         }
-//     }
-
-//     if (!allFieldsFilled) {
-//         alert('Some input is missing');
-//     } 
-//     else {
-//         const student = arry.map(input => input.value);
-
-//         const studentsData = JSON.parse(localStorage.getItem("students")) || [];
-//         studentsData.push(student);
-//         localStorage.setItem("students", JSON.stringify(studentsData));
-
-//         addRowToTable(student);
-
-//         arry.forEach(input => input.value = '');
-//     }
-// });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 const nameInput = document.querySelector("#name");
@@ -122,17 +5,17 @@ const rollInput = document.querySelector("#roll");
 const classInput = document.querySelector("#class");
 const ageInput = document.querySelector("#age");
 const button = document.querySelector("#submit_btn");
+const studentsfrm = document.querySelector('#studentsfrm');
+
 
 const arry = [nameInput, rollInput, classInput, ageInput];
 const studentsTable = document.querySelector('#tbody');
 
-let editIndex = null; // এডিট রো ট্র্যাক করার জন্য ভ্যারিয়েবল
+let editIndex = null; 
 
-// টেবিলে একটি নতুন রো যোগ করার ফাংশন
 function addRowToTable(student, index) {
     let tr = document.createElement('tr');
 
-    // প্রতিটি ডেটা টেবিল সেলে যোগ করা
     student.forEach(value => {
         let td = document.createElement('td');
         td.innerHTML = value;
@@ -140,7 +23,7 @@ function addRowToTable(student, index) {
         tr.appendChild(td);
     });
 
-    // এডিট এবং ডিলিট বোতাম তৈরি
+
     let editBtn = document.createElement('button');
     editBtn.innerText = 'Edit';
     editBtn.classList.add('editButton')
@@ -149,7 +32,16 @@ function addRowToTable(student, index) {
     let deleteBtn = document.createElement('button');
     deleteBtn.innerText = 'Delete';
     deleteBtn.classList.add('deleteButton')
-    deleteBtn.onclick = () => deleteStudent(index);
+    deleteBtn.onclick = () => {
+        let positive = prompt("Please enter 'yes'");
+        switch(positive){
+            case 'yes':
+                deleteStudent(index);
+            default:
+                return;
+        }
+        
+    };
 
     let actionTd = document.createElement('td');
     actionTd.appendChild(editBtn);
@@ -159,18 +51,18 @@ function addRowToTable(student, index) {
     studentsTable.appendChild(tr);
 }
 
-// localStorage থেকে ডেটা লোড করা
+
 document.addEventListener('DOMContentLoaded', () => {
     const studentsData = JSON.parse(localStorage.getItem("students")) || [];
     studentsData.forEach((student, index) => addRowToTable(student, index));
 });
 
-// ডেটা সংরক্ষণ এবং টেবিলে রো যোগ করা
+
 button.addEventListener('click', (e) => {
     e.preventDefault();
     let allFieldsFilled = true;
 
-    // ফিল্ডগুলো খালি আছে কিনা পরীক্ষা করা
+
     for (let i = 0; i < arry.length; i++) {
         if (arry[i].value === "") {
             allFieldsFilled = false;
@@ -185,48 +77,206 @@ button.addEventListener('click', (e) => {
         const studentsData = JSON.parse(localStorage.getItem("students")) || [];
 
         if (editIndex !== null) {
-            // Update mode
+            
             studentsData[editIndex] = student;
             localStorage.setItem("students", JSON.stringify(studentsData));
             editIndex = null;
-            button.innerText = "Add"; // Button text reset
+            button.innerText = "Add"; 
         } else {
-            // Add mode
+           
             studentsData.push(student);
             localStorage.setItem("students", JSON.stringify(studentsData));
         }
 
-        reloadTable(); // টেবিল রিফ্রেশ
-        arry.forEach(input => input.value = ''); // ইনপুট ফিল্ড খালি করা
+        reloadTable(); 
+        arry.forEach(input => input.value = '');
     }
 });
 
-// রো ডিলিট করার ফাংশন
 function deleteStudent(index) {
     let studentsData = JSON.parse(localStorage.getItem("students"));
-    studentsData.splice(index, 1); // ডেটা মুছে ফেলা
+    studentsData.splice(index, 1); 
     localStorage.setItem("students", JSON.stringify(studentsData));
-    reloadTable(); // টেবিল পুনরায় লোড করা
+    reloadTable(); 
 }
 
-// রো এডিট করার ফাংশন
 function editStudent(index) {
     const studentsData = JSON.parse(localStorage.getItem("students"));
     const student = studentsData[index];
 
-    // ইনপুট ফিল্ডে ডেটা সেট করা
     nameInput.value = student[0];
     rollInput.value = student[1];
     classInput.value = student[2];
     ageInput.value = student[3];
 
-    editIndex = index; // এডিট করার জন্য রো ইন্ডেক্স সেট করা
-    button.innerText = "Update"; // Button text change
+    editIndex = index;
+    button.innerText = "Update"; 
 }
 
-// টেবিল পুনরায় লোড করার ফাংশন
 function reloadTable() {
-    studentsTable.innerHTML = ""; // পুরানো টেবিল ডেটা মুছে ফেলা
+    studentsTable.innerHTML = ""; 
     const studentsData = JSON.parse(localStorage.getItem("students")) || [];
     studentsData.forEach((student, index) => addRowToTable(student, index));
 }
+
+// Add event listener to the form
+studentsfrm.addEventListener('submit', (e) => {
+    e.preventDefault(); // Prevent form submission
+    
+    // Name validation
+    if (nameInput.value.length < 3) {
+        alert('Name must be at least 3 characters long');
+        return;
+    }
+    
+    // Roll validation
+    if (!rollInput.value.match(/^\d+$/)) { // Only numbers allowed
+        alert('Roll must be a number');
+        return;
+    }
+    
+    // Class validation
+    if (classInput.value.trim() === '') {
+        alert('Class cannot be empty');
+        return;
+    }
+
+    // Age validation
+    if (ageInput.value < 1 || ageInput.value > 100) {
+        alert('Age must be between 1 and 100');
+        return;
+    }
+
+    // If all validations pass, submit the form data
+    alert('Form submitted successfully!');
+    // Add the data to the table or perform further actions
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const nameInput = document.querySelector("#name");
+// const rollInput = document.querySelector("#roll");
+// const classInput = document.querySelector("#class");
+// const ageInput = document.querySelector("#age");
+// const studentsfrm = document.querySelector('#studentsfrm');
+// const studentsTable = document.querySelector('#tbody');
+// const submitButton = document.querySelector("#submit_btn");
+
+// let editIndex = null;
+
+// function addRowToTable(student, index) {
+//     let tr = document.createElement('tr');
+
+//     student.forEach(value => {
+//         let td = document.createElement('td');
+//         td.innerHTML = value;
+//         td.classList.add('table_data');
+//         tr.appendChild(td);
+//     });
+
+//     let editBtn = document.createElement('button');
+//     editBtn.innerText = 'Edit';
+//     editBtn.classList.add('editButton');
+//     editBtn.onclick = () => editStudent(index);
+
+//     let deleteBtn = document.createElement('button');
+//     deleteBtn.innerText = 'Delete';
+//     deleteBtn.classList.add('deleteButton');
+//     deleteBtn.onclick = () => {
+//         let positive = prompt("Please enter 'yes'");
+//         if (positive === 'yes') {
+//             deleteStudent(index);
+//         }
+//     };
+
+//     let actionTd = document.createElement('td');
+//     actionTd.appendChild(editBtn);
+//     actionTd.appendChild(deleteBtn);
+
+//     tr.appendChild(actionTd);
+//     studentsTable.appendChild(tr);
+// }
+
+// document.addEventListener('DOMContentLoaded', () => {
+//     const studentsData = JSON.parse(localStorage.getItem("students")) || [];
+//     studentsData.forEach((student, index) => addRowToTable(student, index));
+// });
+
+// studentsfrm.addEventListener('submit', (e) => {
+//     e.preventDefault();
+
+//     // Validation
+//     if (nameInput.value.length < 3) {
+//         alert('Name must be at least 3 characters long');
+//         return;
+//     }
+//     if (!rollInput.value.match(/^\d+$/)) {
+//         alert('Roll must be a number');
+//         return;
+//     }
+//     if (classInput.value.trim() === '') {
+//         alert('Class cannot be empty');
+//         return;
+//     }
+//     if (ageInput.value < 1 || ageInput.value > 100) {
+//         alert('Age must be between 1 and 100');
+//         return;
+//     }
+
+//     // Data processing
+//     const student = [nameInput.value, rollInput.value, classInput.value, ageInput.value];
+//     const studentsData = JSON.parse(localStorage.getItem("students")) || [];
+
+//     if (editIndex !== null) {
+//         studentsData[editIndex] = student;
+//         editIndex = null;
+//         submitButton.innerText = "Add";  // Submit button text reset to "Add"
+//     } else {
+//         studentsData.push(student);
+//     }
+    
+//     localStorage.setItem("students", JSON.stringify(studentsData));
+//     reloadTable();
+
+//     studentsfrm.reset();
+// });
+
+// function deleteStudent(index) {
+//     let studentsData = JSON.parse(localStorage.getItem("students"));
+//     studentsData.splice(index, 1);
+//     localStorage.setItem("students", JSON.stringify(studentsData));
+//     reloadTable();
+// }
+
+// function editStudent(index) {
+//     const studentsData = JSON.parse(localStorage.getItem("students"));
+//     const student = studentsData[index];
+
+//     nameInput.value = student[0];
+//     rollInput.value = student[1];
+//     classInput.value = student[2];
+//     ageInput.value = student[3];
+
+//     editIndex = index;
+//     submitButton.innerText = "Submit";  // Change submit button text to "Submit" when editing
+// }
+
+// function reloadTable() {
+//     studentsTable.innerHTML = "";
+//     const studentsData = JSON.parse(localStorage.getItem("students")) || [];
+//     studentsData.forEach((student, index) => addRowToTable(student, index));
+// }

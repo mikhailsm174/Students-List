@@ -12,12 +12,12 @@
             <h1>Students List</h1>
         </div>
         <div class="app_body"> 
-            <form action="" class="students_form">
+            <form action="" class="students_form" id="studentsfrm">
                 <input class="user_input" id="name" type="text" placeholder="name" required>
                 <input class="user_input" id="roll" type="text" placeholder="Roll" required>
                 <input class="user_input" id="class" type="text" placeholder="Class" required>
-                <input class="user_input" id="age" type="number" placeholder="Age" required>
-                <button class="user_btn" id="submit_btn">click me</button>
+                <input class="user_input" id="age" type="number" placeholder="Age" required min="18" max="30">
+                <button class="user_btn" id="submit_btn">Add</button>
             </form>
 
             <table id="students_table" class="list_table" border>
@@ -35,6 +35,6 @@
         </div>
     </div>
     
-    <script src="./main.js"></script>
+    <script src="./main.js" defer ></script>
 </body>
 </html>
